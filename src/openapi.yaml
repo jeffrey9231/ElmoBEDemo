@@ -1,0 +1,70 @@
+swagger: '2.0'
+host: http://localhost:3001
+basePath: /v1
+info:
+  title: Elmo - Backend Demo 
+  version: '3.0.0'
+definitions:
+  400Error:
+    properties:
+      message:
+        type: string
+      
+  500Error:
+    properties:
+      message:
+        type: string
+      errors:
+        type: string
+        
+  SearchQuery:
+    type: string
+    example: 'soccer'
+
+  DetailsQuery:
+    type: string
+    example: '???'
+      
+paths:
+  /search:
+    get:
+      description: Search twitter user by topical interest, full name, company name, location, or other criteria.
+      operationId: search
+      parameters:
+        - name: q
+          in: path
+          required: true
+          schema:
+            $ref: '#/definitions/SearchQuery'
+      responses:
+        200:
+          description: Returning success on service status
+        400:
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/400Error'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/500Error'
+  /details:
+    get:
+      description: search twitter user details by id.
+      operationId: details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/definitions/DetailsQuery'
+      responses:
+        200:
+          description: Returning success on service status
+        400:
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/400Error'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/500Error'
