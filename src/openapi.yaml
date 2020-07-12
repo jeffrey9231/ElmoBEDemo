@@ -1,5 +1,5 @@
 swagger: '2.0'
-host: http://localhost:3001
+host: localhost:3001
 basePath: /v1
 info:
   title: Elmo - Backend Demo 
@@ -32,7 +32,7 @@ paths:
       operationId: search
       parameters:
         - name: q
-          in: path
+          in: query
           required: true
           schema:
             $ref: '#/definitions/SearchQuery'
@@ -53,7 +53,7 @@ paths:
       operationId: details
       parameters:
         - name: id
-          in: path
+          in: query
           required: true
           schema:
             $ref: '#/definitions/DetailsQuery'
